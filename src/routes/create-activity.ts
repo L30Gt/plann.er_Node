@@ -24,8 +24,9 @@ export async function createActivity(app: FastifyInstance) {
         where: { id: tripId }
     })
 
-    if (!trip)
-        throw new Error('Trip not found.')
+    if (!trip) {
+      throw new Error('Trip not found.')
+    }
 
     if (dayjs(occurs_at).isBefore(trip.starts_at)) {
         throw new Error('Invalid activity date.')
